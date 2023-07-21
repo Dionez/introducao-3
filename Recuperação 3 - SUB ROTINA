@@ -1,0 +1,115 @@
+programa
+{
+	inclua biblioteca Matematica
+ -->mt
+	
+funcao lerResistencias(real matriz[][], inteiro numLinhas, inteiro numColunas)
+	{
+        escreva("Forneça os valores das resistencias em Ohns\n")
+        para(inteiro i = 0; i < numLinhas; i++)
+        {
+            para(inteiro j = 0; j < numColunas; j++)
+            {
+                escreva("[",i+1,"][",j+1,"] = ")
+                leia(matriz[i][j])
+                        
+                se(matriz[0][j] <= 0)
+                {
+                    faca
+                    {
+                        escreva("Forneça uma resistencia positiva e diferente de 0\n")
+                        escreva("[",i+1,"][",j+1,"] = ")
+                        leia(matriz[i][j])
+                    }enquanto(matriz[0][j] <= 0)
+                }
+            }       
+        }
+	}
+	funcao exibirMatriz(real matriz[][], inteiro numLinhas, inteiro numColunas)
+	{
+        para(inteiro i = 0; i < numLinhas; i++)
+        {
+            para(inteiro j = 0; j < numColunas; j++)
+            {
+                escreva(matriz[i][j], " ")
+            }
+            escreva("\n")
+        }
+	}
+
+    funcao real encontrarMenorValor(real matriz[][], inteiro numLinhas, inteiro numColunas)
+    {
+        real menor = matriz[0][0]
+        para(inteiro i = 0; i < numLinhas; i++)
+        {
+            para(inteiro j = 0; j < numColunas; j++)
+            {
+                se (matriz[i][j] < menor) 
+                {
+                    menor = matriz[i][j]
+                }
+            }
+        }
+        retorne menor
+    }
+	funcao real encontrarMaiorValor(real matriz[][], inteiro numLinhas, inteiro numColunas)
+   	{
+        real maior = matriz[0][0]
+        para(inteiro i = 0; i < numLinhas; i++)
+        {
+            para(inteiro j = 0; j < numColunas; j++)
+            {
+                se (matriz[i][j] > maior) 
+                {
+                    maior = matriz[i][j]
+                }
+            }
+        }
+        retorne maior
+	}  
+
+    funcao real calcularMedia(real matriz[][], inteiro numLinhas, inteiro numColunas)
+    {
+        real somatorio = 0.0
+
+        para(inteiro i = 0; i < numLinhas; i++)
+        {
+            para(inteiro j = 0; j < numColunas; j++)
+            {
+                somatorio += matriz[i][j]
+            }
+        }
+        
+        retorne somatorio / (numLinhas * numColunas)
+    }
+
+    funcao inicio()
+	{
+		const inteiro CASAS_DECIMAIS = 4
+		const inteiro NUMERO_DE_LINHAS = 2
+		const inteiro NUMERO_DE_COLUNAS = 2
+		real matriz[NUMERO_DE_LINHAS][NUMERO_DE_COLUNAS]
+		inteiro i = 0
+		inteiro j = 0
+
+
+
+		lerResistencias(matriz, NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
+		
+		real menorResistencia = encontrarMenorValor(matriz, NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
+       	escreva("\nA menor resistencia fornecida é ",mt.arredondar(menorResistencia,CASAS_DECIMAIS)," Ohns")
+
+       	real maiorResistencia = encontrarMaiorValor(matriz, NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
+       	escreva("\nA maior resistencia fornecida é ",mt.arredondar(maiorResistencia,CASAS_DECIMAIS)," Ohns")
+
+		real mediaDasResistencias = calcularMedia(matriz, NUMERO_DE_LINHAS, NUMERO_DE_COLUNAS)
+		escreva("\nA média das resistencias é de ",mt.arredondar(mediaDasResistencias,CASAS_DECIMAIS)," Ohns")
+
+       	real maiorDiferenca = maiorResistencia - menorResistencia
+       	escreva("\nA maior diferença das resistencias é de ",mt.arredondar(maiorDiferenca,CASAS_DECIMAIS)," Ohns")
+		
+        
+	}
+}	
+   	
+
