@@ -1,0 +1,93 @@
+programa
+{
+	inclua biblioteca Matematica
+ --> mt
+	
+	funcao inicio()
+	{
+		const inteiro PRECISAO = 4
+		const inteiro  NUMERO_DE_LINHAS = 2
+		const inteiro  NUMERO_DE_COLUNAS = 2
+		real matriz[NUMERO_DE_LINHAS][NUMERO_DE_COLUNAS] 
+		inteiro i = 0
+		inteiro j = 0
+
+		escreva("Forneça os valores das resistencias em Ohns\n")
+		para(i = 0; i < NUMERO_DE_LINHAS; i++)
+		{
+			para(j = 0; j < NUMERO_DE_COLUNAS; j++)
+			{
+				escreva("[",i+1,"][",j+1,"] = ")
+				leia(matriz[i][j])
+						
+				se(matriz[0][j] <= 0)
+				{
+					faca
+					{
+						escreva("Forneça uma resistencia positiva e diferente de 0\n")
+						escreva("[",i+1,"][",j+1,"] = ")
+						leia(matriz[i][j])
+					}enquanto(matriz[0][j] <= 0)
+				}
+			}		
+		}			
+
+		escreva("os valores das resistencias em Ohns: \n")
+		para(i = 0; i < NUMERO_DE_LINHAS; i++)
+		{
+			para(j = 0; j < NUMERO_DE_COLUNAS; j++)
+			{
+				escreva(matriz[i][j], " ")
+			}
+			escreva("\n")
+					
+		}
+
+
+		real menor = matriz[0][0]
+		para(i = 0; i < NUMERO_DE_LINHAS; i++)
+		{
+			para(j = 0; j < NUMERO_DE_COLUNAS; j++)
+			{
+				se (matriz[i][j] < menor) 
+				{
+                    	menor = matriz[i][j]
+				}
+					
+			}
+		}	
+		escreva("\nA menor resistencia fornecida é ",mt.arredondar(menor,PRECISAO)," Ohns")
+
+		real maior = matriz[0][0]
+		para(i = 0; i < NUMERO_DE_LINHAS; i++)
+		{
+			para(j = 0; j < NUMERO_DE_COLUNAS; j++)
+			{
+				se (matriz[i][j] > maior) 
+				{
+                    	maior = matriz[i][j]
+				}
+					
+			}
+		}
+		escreva("\nA maior resistencia fornecida é ",mt.arredondar(maior,PRECISAO)," Ohns")
+
+		
+		real somatorio = 0.0
+
+		para(i = 0; i < NUMERO_DE_LINHAS; i++)
+		{
+			para(j = 0; j < NUMERO_DE_COLUNAS; j++)
+			{
+				somatorio+= matriz[i][j]
+			}
+		}
+		real mediaDasResistencias = somatorio / ((NUMERO_DE_LINHAS * NUMERO_DE_COLUNAS))
+		escreva("\nA média das resistencias é de ",mt.arredondar(mediaDasResistencias,PRECISAO)," Ohns")		
+		
+		
+		real maiorDiferenca = maior - menor
+
+		escreva("\nA maior diferença das resistencias é de ",mt.arredondar(maiorDiferenca,PRECISAO)," Ohns")
+	}
+}
